@@ -1,21 +1,27 @@
 def ordena(lista):
-    return burbuja(lista) + insercion(lista)
-
+    return burbuja(lista) #+ insercion(lista)
+    
 def burbuja(A):
-    m = A
-    for i in range(1,len(A)):
-        for j in range(0,len(A)-i):
-            if(A[j+1] < A[j]):
-                aux=A[j];
-                A[j]=A[j+1];
-                A[j+1]=aux;
-    
-    cadena = "<h1> Ordenación por burbuja</h1>"
-    cadena += "<h2>Lista Inicial: " + m + "</h2>"
-    cadena += "<h2>Lista Ordenada: " + A + "</h2>"
+    M = A.split(',')
+    tam = len(M)
+    for i in range(tam):
+        for j in range(0, tam - i - 1):
+            if M[j] > M[j + 1]:
+                M[j], M[j + 1] = M[j + 1], M[j]
+
+    cadena = "<h1>Ordenación por burbuja</h1>"
+    cadena += "<h2>Lista inicial: " + A + "</h2>"
+    cadena += "<h2>Lista ordenada: "
+
+    for i in range(0, tam):
+        cadena += M[i]
+        if i != tam - 1:
+            cadena += ", "
+    cadena += "</h2>"
+    return cadena
     
 
-def insercion(matrix):
+'''def insercion(matrix):
     m = matrix
     for i in range(len(matrix)):
         for j in range(i,0,-1):
@@ -25,6 +31,8 @@ def insercion(matrix):
                 matrix[j-1]=aux;
 
     cadena = "<h1> Ordenación por inserción</h1>"
-    cadena += "<h2>Lista Inicial: " + m + "</h2>"
-    cadena += "<h2>Lista Ordenada: " + matrix + "</h2>"
+    cadena2 = cadena + "<h2>Lista Inicial: " + m + "</h2>"
+    cadena3 = cadena2 + "<h2>Lista Ordenada: " + matrix + "</h2>"
+
+    return cadena3'''
 
