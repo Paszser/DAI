@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>DAI, Expresiones Regulares</title>
+
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
+<section>
+    <h1>D<span style="font-size: 0.6em;">esarrollo de</span> A<span style="font-size: 0.6em;">plicaciones para </span> I<span style="font-size: 0.6em;">nternet</span></h1>
+
+    <h2>Expresiones Regulares (Python)</h2>
+
+    <p><center><img src="./imagenes/web-app-dev.jpg" width="70%" /></center><p>
+
+    <footer><a href="https://swad.ugr.es/?CrsCod=7257">
+    Desarrollo de Aplicaciones para Internet</a></footer>
+</section>
+
+
+<section>
+<h2>Expresiones Regulares</h2>
+<br>
+Lenguaje para especificar busquedas en un texto
+mediante patrones
+<br><br>
+En Python se usan con el módulo <strong>re</strong>
+<br>
+<br>
+
+<pre class="prettyprint" style="border-style:none;">
+import re
+match = re.search(r'([\w.-]+)@([\w.-]+)', str)
+</pre>
+<footer class="der">
+<a href="http://docs.python.org/3/howto/regex.html" >Regular Expression HOWTO</a>
+</footer>
+</section>
+
+
+<section>
+<h2>Métodos</h2>
+
+<table border="1" style="font-size:70%; width: 90%;">
+<colgroup>
+<col width="25%">
+<col width="75%">
+</colgroup>
+<thead valign="bottom">
+<tr><th>Método</th>
+<th>Propósito</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt><b>re.match()</b></tt></td>
+<td>Determinar si la expresión regular se ajusta al principio de la cadena.</td>
+</tr>
+<tr><td><tt><b>re.search()</b></tt></td>
+<td>Buscar en toda la cadena donde se cumple la expresión regular</td>
+</tr>
+<tr><td><tt><b>re.findall()</b></tt></td>
+<td>Buscar en la cadena donde se cumple la expresión regular y devolver una lista</td>
+</tr>
+<tr><td><tt><b>re.finditer()</b></tt></td>
+<td>Buscar en la cadena donde se cumple la expresión regular y devolver un iterador</td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<section>
+<h2>Metacarácteres</h2>
+
+<br>
+En una expesión regular cada carácter significa él mismo,
+excepto los <i>'comodines'</i> : <br><br>
+<p><pre style="font-size:120%"><strong>.  ^  $  *  +  ?  \  |  {  }  [  ]  (  )</strong></pre></p>
+
+<footer class="der">
+<a href="https://regex101.com/" >On-line Regex</a>
+</footer>
+
+</section>
+
+<section>
+<h2>Alternancia &nbsp;<strong>|</strong>&nbsp;&nbsp;&nbsp; y agrupado &nbsp;<strong>(</strong>  <strong>)</strong></h2>
+
+<br><br>
+<pre class="prettyprint" style="border-style:none;">
+'granada|o'    # granada ó o
+
+
+'granad(a|o)'  # granada o granado
+</pre>
+
+
+<footer class="der">
+<a href="https://regex101.com/" >Regex Tester</a>
+</footer>
+</section>
+
+
+<section>
+<h2>Conjunto &nbsp;&nbsp;&nbsp;<strong>[ ]</strong></h2>
+<br><br>
+<pre class="prettyprint" style="border-style:none;">
+'granad[ao]'     # granada o granado
+
+'granad[^ao]'    # conjunto negado
+
+'granad[a-z]'    # intervalo
+</pre>
+
+
+<footer class="der">
+<a href="https://regex101.com/" >On-line Regex</a>
+</footer>
+</section>
+
+
+<section>
+<h2>Conjuntos frecuentes</h2>
+<br>
+<pre class="prettyprint" style="border-style:none;">
+.          # cualquiera menos \n
+
+\d         # dígito:          [0-9]
+\D         # no dígito:       [^0-9]
+
+\w         # alfanumérico:    [a-zA-Z0-9_]
+\W         # no alfanumérico: [^a-zA-Z0-9_]
+
+\s         # espacio:         [ \t\f\r\n]
+\S         # no espacio:      [^ \t\f\r\n]
+</pre>
+
+
+<footer class="der">
+<a href="https://regex101.com/" >On-line Regex</a>
+</footer>
+</section>
+
+
+
+<section>
+<h2>Conjuntos Unicode</h2>
+
+<pre class="prettyprint" style="border-style:none;">
+\p{L}      # cualquer letra
+\p{Lu}     # máyusculas
+\p{Ll}     # minúsculas
+\p{Lt}     # mayúsculas principio de palabra
+
+\p{Z}      # separador
+
+\p{S}      # símbolo
+
+\p{P}      # puntuación
+
+\p{Latin}
+\p{Arabic}
+</pre>
+
+
+<footer class="der">
+<a href="https://www.regular-expressions.info/unicode.html">Unicode Categories</a>
+</footer>
+</section>
+
+
+<section>
+<h2>Cuantificadores &nbsp;&nbsp;&nbsp;<strong>?</strong>&nbsp;, &nbsp;&nbsp;<strong>*</strong>&nbsp;, &nbsp;&nbsp;
+<strong>+</strong>&nbsp;, &nbsp;&nbsp;<strong>{ }</strong></h2>
+<br><br>
+<pre class="prettyprint" style="border-style:none;font-size:75%">
+'uno?'       # cero o una vez: un, uno
+
+'uno*'       # cero o más: un, uno, unoo, ...
+
+'uno+'       # uno o más: uno, unoo, unoo, ...
+
+'uno{3}'     # tres: unooo
+
+'uno{3,5}'   # entre tres y cinco
+</pre>
+
+<footer class="der">
+<a href="https://regex101.com/" >On-line Regex</a>
+</footer>
+</section>
+
+<section>
+<h2>Modificador  &nbsp; <strong>?</strong> &nbsp; para cuantificadores</h2>
+<br>
+Las expresiones regulares abren todo lo posible<br> Para que no abran se modifican
+con <code>?</code>
+<br><br>
+<pre class="prettyprint" style="border-style:none;font-size:80%">
+
+# Detectar las etiquetas en una página web
+
+'&lt;.+?&gt;'
+</pre>
+
+<footer class="der">
+<a href="https://regex101.com/" >On-line Regex</a>
+</footer>
+</section>
+
+<section>
+<h2>Anclajes &nbsp;&nbsp;<strong>^</strong>, &nbsp; <strong>$</strong>,
+&nbsp;<strong>\b</strong></h2>
+
+<br><br>
+<pre class="prettyprint" style="border-style:none;">
+'^uno'        # uno al principio del string
+
+'uno$'        # uno al final del string
+
+'\buno\b'     # frontera de palabra
+</pre>
+
+<footer class="der">
+<a href="https://regex101.com/" >On-line Regex</a>
+</footer>
+</section>
+
+
+<section>
+<h2>Extracción con &nbsp;<strong>( &nbsp; )</strong></h2>
+<br>
+Se puede extraer el texto de parte de una expresión regular
+capturandolo con paréntesis <code>( )</code>
+<br><br>
+<pre class="prettyprint" style="border-style:none;">
+# Segunda palabra de un texto
+
+import re
+segunda = re.findall(r'^\w+ (\w+)', texto)
+</pre>
+<footer class="der">
+<a href="https://regex101.com/" >On-line Regex</a>
+</footer>
+<footer class="der">
+<a href="https://regex101.com/" >On-line Regex</a>
+</footer>
+
+</section>
+
+<section>
+<h2>Referencias hacia atrás</h2>
+<br>
+También sirven para referenciar parte de la expresión
+regular dentro de ella misma con <strong>&nbsp;\1 , &nbsp;\2 , &nbsp;. . .</strong>
+<br>
+<br>
+<pre class="prettyprint" style="border-style:none;">
+
+# Dos primeras palabras iguales
+
+import re
+re.search (r'^(\w+) \1', texto)
+</pre>
+
+<footer class="der">
+<a href="https://regex101.com/" >On-line Regex</a>
+</footer>
+</section>
+
+
+<section>
+<h2>Paréntesis con nombre</h2>
+<br>
+También nombrando cada paréntesis para referirse
+a él con el método <code>group()</code>
+<br>
+<br>
+<pre class="prettyprint" style="border-style:none;margin-left:50px">
+import re
+m = re.search('(?P&lt;dia&gt;\d\d)-(?P&lt;mes&gt;\d\d)-(?P&lt;año&gt;\d\d)', texto)
+                          # Si no tienen nombre sería
+dia = m.group('dia')      # m.group(1)
+mes = m.group('mes')      # m.group(2)
+año = m.group('año')      # m.group(3)
+</pre>
+<footer class="der">
+<a href="https://regex101.com/" >On-line Regex</a>
+</footer>
+
+</section>
+
+<section>
+<h2>Aserciones hacia delante</h2>
+<br>
+Son condiciones que se tienen que cumplir
+para que la expresión regular se cumpla, aunque
+no formen parte de ella (no se consumen).
+<ul>
+<li><strong>(?= ...)</strong>&nbsp; Positiva</li>
+<li><strong>(?! ...)</strong>&nbsp;&nbsp; Negativa</li>
+</ul>
+
+<pre class="prettyprint" style="border-style:none;">
+
+# Ficheros con extensión distinta de .bat
+import re
+m = re.match(r'.+\.(?!bat)$', texto)
+</pre>
+</section>
+
+<section>
+<h2>Aserciones hacia atrás</h2>
+<br>
+También hacia atrás con:
+<br>
+<ul>
+<li><strong>(?&lt;= ...)</strong>&nbsp; Positiva</li>
+<li><strong>(?&lt;! ...)</strong>&nbsp;&nbsp; Negativa</li>
+</ul>
+<br><br>
+<pre class="prettyprint" style="border-style:none;">
+# Palabras en máyuscula después de punto
+import re
+m = re.match(r'(?&lt;=\.)\s+[A-Z][a-z]+', texto)
+</pre>
+<br>
+Las aserciones no forman parte de las expresión regular
+
+</section>
+
+
+<section>
+<h2>Modificadores</h2>
+
+Se puede modificar el comportamiento
+de las expresiones regulares con los
+modificadores:
+<br>
+<table border="1" style="font-size:70%; width: 90%">
+<colgroup>
+<col width="25%">
+<col width="75%">
+</colgroup>
+<thead valign="bottom">
+<tr><th>Modificador</th>
+<th>Propósito</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt><b>DOTALL, S</b></tt></td>
+<td><b>. </b>incluye todos los carácteres, incluyendo salto de línea</td>
+</tr>
+<tr><td><tt><b>IGNORECASE, I</b></tt></td>
+<td>No se distingue mayúsculas de minúsculas</td>
+</tr>
+<tr><td><tt><b>MULTILNE, M</b></tt></td>
+<td><b>^</b>, y <b>$</b> son principio y fin de línea, en lugar
+de principio y fin de cadena</td>
+</tr>
+<tr><td><tt><b>VERBOSE, X</b></tt></td>
+<td>Se ignoran espacios en blanco, saltos de línea y comentarios, para hacer
+la expresión regular mas legible</td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<section>
+<h2>Modificadores</h2>
+<br>
+Los modificadores se ponen en el tercer argumento de los
+métodos<br>
+
+<pre class="prettyprint" style="border-style:none;">
+import re
+
+m = search( r'''  \d+  # parte entera
+                 \.   # separador
+                 \d+  # parte decimal
+            ''', str, re.X)
+
+if m: print(m.group())
+</pre>
+</section>
+
+<section>
+<h2>Modificación de cadenas</h2>
+
+<br>
+<br>
+<table border="1" style="font-size:70%">
+<colgroup>
+<col width="25%">
+<col width="75%">
+</colgroup>
+<thead valign="bottom">
+<tr><th>Método</th>
+<th>Propósito</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt><b>re.split()</b></tt></td>
+<td>Partir la cadena por donde se cumpla la expresión regular</td>
+</tr>
+<tr><td><tt><b>re.sub()</b></tt></td>
+<td>Substituir las partes de la cadena donde se cumpla la expresión regular</td>
+</tr>
+<tr><td><tt><b>re.subn()</b></tt></td>
+<td>Devuelve además el número de substituciones hechas</td>
+</tr>
+</tbody>
+</table>
+
+</section>
+
+<section>
+<h2>Modificación de cadenas</h2>
+<br>
+<pre class="prettyprint" style="border-style:none;">
+import re
+
+# Partir un texto en palabras
+palabras = re.split(r'\s+', texto)
+
+
+
+# Substituir espacios por guiones
+sub = re.sub(r'\s+', '-', texto)
+</pre>
+</section>
+
+<section>
+<h2>Compilación de expresiones regulares</h2>
+
+<br>
+Si se van a usar varias veces, las expresiones regulares se pueden compilar
+<br><br>
+<pre class="prettyprint" style="border-style:none;">
+import re
+
+vocales = re.compile(r'[aeiou]', re.I)
+
+# Secuencias de consonantes
+b = vocales.split(str)
+</pre>
+
+</section>
+
+
+<section>
+<h2>Métodos de <b>string</b></h2>
+
+Si se puede es más rápido usar los métodos de <b>string</b>:
+
+<br><br>
+
+<table border="1" style="font-size:70%">
+<colgroup>
+<col width="25%">
+<col width="75%">
+</colgroup>
+<thead valign="bottom">
+<tr><th>Método</th>
+<th>Propósito</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt><b>find()</b></tt></td>
+<td>Devuelve la posición de una subcadena</td>
+</tr>
+<tr><td><tt><b>replace()</b></tt></td>
+<td>Devuelve una cadena con substituciones</td>
+</tr>
+<tr><td><tt><b>translate()</b></tt></td>
+<td>Devuelve una cadena con caracteres substituidos</td>
+</tr>
+<tr><td><tt><b>split()</b></tt></td>
+<td>Devuelve una lista con partes de  una cadena</td>
+</tr>
+<tr><td><tt><b>strip()</b></tt></td>
+<td>Devuelve la cadena sin espacios en blanco en los extremos</td>
+</tr>
+</tbody>
+</table>
+
+</section>
+
+<section>
+<h2>Métodos de <b>string</b></h2>
+<br>
+<pre class="prettyprint" style="border-style:none;">
+str = ' abc def '
+
+
+str.find('abc')
+
+str.replace ('abc', '123')
+
+str.translate(' ','-')
+
+str.split('d')
+
+str.strip()
+
+
+</pre>
+</section>
+
+<section>
+<h2>Para prácticar</h2>
+<br>
+<p>
+<pre class="prettyprint" style="border-style:none;">
+
+# dnis
+
+# urls
+
+# direcciones e-mail
+
+# contraseñas que contengan al menos 2 digitos y dos letras
+
+</pre>
+</p>
+
+<footer class="der">
+<a href="https://regex101.com/" >On-line Regex</a>
+</footer>
+
+</section>
+
+
+
+<!-- Style -->
+
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'>
+<style>
+  html { background-color: aliceblue; }
+  a { color: blue4; font-size:80%; text-decoration:none;} a:hover {text-decoration: underline;}
+  footer { position: absolute; bottom: 10px; right: 50px; }
+  strong {color: #FF0066}
+  body {
+      font-family: 'Oswald', arial, serif;
+      background-color: aliceblue;
+      color: black;
+      font-size: 2em;
+      background: aliceblue;
+  }
+
+  table {
+	  margin: auto 20px auto auto;
+	  float: left;
+  }
+
+  td {
+	  padding:5px 10px 5px 10px;
+  }
+
+  th {
+	background:rgb(248,231,248);
+  }
+
+
+  pre {font-size:80%;
+       width: 630px;
+       line-height:1.6em;
+       margin: auto auto auto 100px;
+	  }
+
+  /* Transition effect */
+  section {
+      -moz-transition: left 400ms linear 0s;
+      -webkit-transition: left 400ms linear 0s;
+      -ms-transition: left 400ms linear 0s;
+      transition: left 400ms linear 0s;
+      background: aliceblue;
+  }
+  section { left: -150%; }
+  section[aria-selected] { left: 0; }
+  section[aria-selected] ~ section { left: +150% }
+
+  .chapter { background-color: paleturquoise;}
+  .chapter h1 {line-height: 600px; vertical-align: middle; margin: 0; text-align: center; display: block}
+
+  h1 {
+      margin: 50px 100px 0 100px;
+      font-size: 60px;
+      text-shadow: 0px -1px 0px #000;
+      text-align: left;
+  }
+  h2 {
+      color: rgb(96,0,0);
+      margin: 30px 0 20px 0;
+      font-size: 40px;
+      text-align: center;
+  }
+  ul {
+      margin-top: 20px;
+      font-size: 35px;
+      text-align: left;
+      /*border-left: 4px solid white;*/
+      padding-right: 40px;
+      min-width: 310px;
+      margin-left: 50px;
+      display: inline-block;
+      font-size: 95%;
+  }
+  q, p {
+      margin: 30px auto 0 auto;
+      width: 95%;//630px;
+  }
+  q:after {content: ""}
+  q:before {content: ""}
+  q {
+      display: block;
+      margin-top: 140px;
+  }
+  video {
+      position: absolute;
+      top: 210px;
+      width: 260px;
+      left: 445px;
+      box-shadow: 0 0 10px black;
+  }
+
+  .cen {
+      position: absolute;
+      top: 120px;
+      width: 620px;
+      height: 440px;
+      left: 130px;
+      box-shadow: 0 0 4px black;
+  }
+
+  li {
+    //list-style-type: none;
+    padding: 9px;
+  }
+
+</style>
+
+<!-- {{{{ *****************  DZSlides CORE 2.0b1 *************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+<!-- This block of code is not supposed to be edited, but if you want to change the behavior of the slides, feel free to hack it ;) -->
+
+<!-- Default Style -->
+
+<style>
+  * { margin: 0; padding: 0; }
+  details {display: none;}
+  body {
+    width: 900px; height: 600px;
+    margin-left: -400px; margin-top: -300px;
+    position: absolute; top: 50%; left: 50%;
+    overflow: hidden;
+  }
+  html {
+    overflow: hidden;
+  }
+  section {
+    position: absolute;
+    pointer-events: none;
+    width: 100%; height: 100%;
+  }
+  section[aria-selected] { pointer-events: auto;}
+  body {display: none}
+  body.loaded {display: block}
+</style>
+
+<script>
+  var friendWindows = [];
+  var idx = 1;
+  var slides;
+
+  /* main() */
+
+  window.onload = function() {
+    slides = document.querySelectorAll("body > section");
+    onhashchange();
+    setSlide();
+    document.body.className = "loaded";
+    setupTouchEvents();
+    onresize();
+  }
+
+  /* Handle keys */
+
+  window.onkeydown = function(e) {
+    // Don't intercept keyboard shortcuts
+    if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) {
+      return;
+    }
+    if ( e.keyCode == 37 // left arrow
+      || e.keyCode == 38 // up arrow
+      || e.keyCode == 33 // page up
+    ) {
+      e.preventDefault();
+      back();
+    }
+    if ( e.keyCode == 39 // right arrow
+      || e.keyCode == 40 // down arrow
+      || e.keyCode == 34 // page down
+    ) {
+      e.preventDefault();
+      forward();
+    }
+
+    if ( e.keyCode == 32) { // space
+        e.preventDefault();
+        toggleContent();
+    }
+  }
+
+  /* Touch Events */
+
+  function setupTouchEvents() {
+    var orgX, newX;
+    var tracking = false;
+
+    var body = document.body;
+    body.addEventListener("touchstart", start, false);
+    body.addEventListener("touchmove", move, false);
+
+    function start(e) {
+      e.preventDefault();
+      tracking = true;
+      orgX = e.changedTouches[0].pageX;
+    }
+
+    function move(e) {
+      if (!tracking) return;
+      newX = e.changedTouches[0].pageX;
+      if (orgX - newX > 100) {
+        tracking = false;
+        forward();
+      } else {
+        if (orgX - newX < -100) {
+          tracking = false;
+          back();
+        }
+      }
+    }
+  }
+
+  /* Adapt the size of the slides to the window */
+
+  window.onresize = function() {
+    var sx = document.body.clientWidth / window.innerWidth;
+    var sy = document.body.clientHeight / window.innerHeight;
+    var transform = "scale(" + (1/Math.max(sx, sy)) + ")";
+    document.body.style.MozTransform = transform;
+    document.body.style.WebkitTransform = transform;
+    document.body.style.OTransform = transform;
+    document.body.style.msTransform = transform;
+    document.body.style.transform = transform;
+  }
+  function getDetails(idx) {
+    var s = document.querySelector("section:nth-of-type("+ idx +")");
+    var d = s.querySelector("details");
+    return d?d.innerHTML:"";
+  }
+  window.onmessage = function(e) {
+    msg = e.data;
+    win = e.source;
+    if (msg === "register") {
+      friendWindows.push(win);
+      win.postMessage(JSON.stringify({method: "registered", title: document.title, count: slides.length}), "*");
+      win.postMessage(JSON.stringify({method: "newslide", details: getDetails(idx), idx: idx}), "*");
+      return;
+    }
+    if (msg === "back") back();
+    if (msg === "forward") forward();
+    if (msg === "toggleContent") toggleContent();
+    // setSlide(42)
+    var r = /setSlide\((\d+)\)/.exec(msg);
+    if (r) {
+        idx = r[1];
+        setSlide();
+    }
+  }
+
+  /* If a Video is present in this new slide, play it.
+     If a Video is present in the previous slide, stop it. */
+
+  function toggleContent() {
+    var s = document.querySelector("section[aria-selected]");
+    if (s) {
+        var video = s.querySelector("video");
+        if (video) {
+            if (video.ended || video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+    }
+  }
+
+  /* If the user change the slide number in the URL bar, jump
+     to this slide. */
+
+  window.onhashchange = function(e) {
+    var newidx = ~~window.location.hash.split("#")[1];
+    if (!newidx) newidx = 1;
+    if (newidx == idx) return;
+    idx = newidx;
+    setSlide();
+  }
+
+  /* Slide controls */
+
+  function back() {
+    if (idx == 1) return;
+    idx--;
+    setSlide();
+  }
+  function forward() {
+    if (idx >= slides.length) return;
+    idx++;
+    setSlide();
+  }
+  function setSlide() {
+    var old = document.querySelector("section[aria-selected]");
+    var next = document.querySelector("section:nth-of-type("+ idx +")");
+    if (old) {
+      old.removeAttribute("aria-selected");
+      var video = old.querySelector("video");
+      if (video) { video.pause(); }
+    }
+    if (next) {
+      next.setAttribute("aria-selected", "true");
+      var video = next.querySelector("video");
+      if (video) { video.play(); }
+    } else {
+      console.warn("No such slide: " + idx);
+      idx = 0;
+      for (var i = 0; i < slides.length; i++) {
+          if (slides[i].hasAttribute("aria-selected")) {
+              idx = i + 1;
+          }
+      }
+    }
+    window.location.hash = idx;
+    for (var i = 0; i < friendWindows.length; i++) {
+        friendWindows[i].postMessage(JSON.stringify({method: "newslide", details: getDetails(idx), idx: idx}), "*");
+    }
+  }
+</script>

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block msg %}
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+        <li class="{{ Alert }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+
+{% endblock %}
+
+{% block contenido %}
+
+<h1> Ejercicio 2</h1>
+<h2> Ordena Vectores </h2>
+<div>
+    <p>Inserta números en formato X,Y,Z y se mostrarán ordenados. A su vez se adherirá el tiempo que tardan los algoritmos en realizar la ordenación.</p>
+</div>
+<div>
+    <form class="form-horizontal" action="{{ url_for("ejercicio2") }}"" method="post">
+        <div class="form-group mt-2">
+        <label class="control-label col-sm-2" for="email">Número:</label>
+            <div class="col-sm-10">
+                <input name="text" type="text" class="form-control" id="InputNumber" placeholder="Inserte un conjunto de números...">
+            </div>
+        </div>
+        <div class="form-group mt-3">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-outline-success">Prueba</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    var input = document.getElementById('InputNumber');
+    input.focus();
+    input.select();
+</script>
+{% endblock %}

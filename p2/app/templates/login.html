@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block msg %}
+
+  {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          <ul class=flashes>
+          {% for message in messages %}
+          <li class="{{ Alert }}">{{ message }}</li>
+          {% endfor %}
+          </ul>
+      {% endif %}
+    {% endwith %} 
+
+{% endblock %}
+
+{% block contenido %}
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img style="width: 30%; height: 30%;" src="../static/images/user.png" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <form action="{{ url_for('login') }}" method="post">
+      <input type="email" id="email" class="fadeIn second" name="email" placeholder="login">
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+      <input type="submit" class="fadeIn fourth" value="Log In">
+    </form>
+
+    <script>
+      var input = document.getElementById('email');
+      input.focus();
+      input.select();
+    </script>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block msg %}
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+        <li class="{{ Alert }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+
+{% endblock %}
+
+{% block contenido %}
+
+<h1> Ejercicio 1</h1>
+<h2> Adivinador de número </h2>
+<div>
+    <a>Inserte un número del 0 al 100 y trate de adivinar el número siguiendo las pistas que se dan.</a>
+</div>
+<div>
+    <form class="form-horizontal" action="{{ url_for("ejercicio1") }}"" method="post">
+        <div class="form-group mt-2">
+        <label class="control-label col-sm-2" for="email">Número:</label>
+            <div class="col-sm-10">
+                <input name="number" type="number" class="form-control" id="InputNumber" placeholder="Inserte un número...">
+            </div>
+        </div>
+        <div class="form-group mt-3">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-outline-success">Prueba</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    var input = document.getElementById('InputNumber');
+    input.focus();
+    input.select();
+</script>
+{% endblock %}

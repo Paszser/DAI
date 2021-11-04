@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+
+
+<meta charset="utf-8" />
+<title>Python</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/themes/prism.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/prism.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.21.0/components/prism-python.min.js"></script>
+
+
+
+<section>
+    <h1>S<span style="font-size: 0.6em;">istemas</span> S<span style="font-size: 0.6em;">oftware </span> B<span style="font-size: 0.6em;">asados en </span> W<span style="font-size: 0.6em;">eb</span></h1>
+
+    <h2>Python en 90 minutos</h2>
+
+    <p><center><img src="./imagenes/web-app-dev.jpg" width="70%" /></center><p>
+
+    <footer><a href="https://swad.ugr.es/?CrsCod=7257">
+    DAI</a></footer>
+</section>
+
+
+<section>
+<h2>¿Por qué Python?</h2>
+
+<p>&nbsp;</p>
+<ul>
+  <li>Es un lenguaje de script de uso general</li>
+
+  <li>Con <a href="http://docs.python.org/3.8/library/">librerias </a>,  
+    <a href="https://pypi.org/">repositorios</a>
+  para "todo"</li>
+  <br />
+  <li>
+    <a href="https://djangostars.com/blog/python-web-development/">
+      The 16 Most Important Pros and Cons of using Python for Web Development</a>
+  </li>
+</ul> 
+
+</section>
+
+<section>
+<h2>Bibliografía</h2>
+
+
+<table><tr>
+<td><img src="imagenes/cover_lp.jpg" height="420" width="360"></td>
+
+<div style="font-size:60%">
+<a href="http://proquest.safaribooksonline.com/book/programming/python/9781449355722">
+http://proquest.safaribooksonline.com/book/programming/python/9781449355722</a>
+</div>
+  
+
+</td>
+</tr></table>
+</section>
+
+<section>
+	<h2>En la red</h2>
+	<p>
+	<br/><br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://python.swaroopch.com/">A Byte of Python</a>
+	<br/><br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://developers.google.com/edu/python/">Google's Python Class</a>
+  <br><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.youtube.com/watch?v=_uQrJ0TkZlc">
+    Python Tutorial - Python for Beginners [Full Course] (video)</a>
+
+</p>
+</section>
+
+
+<section>
+<h2>Python es un lenguaje de script</h2>
+
+<ul>
+  <li>No hay compilador</li>
+
+  <li>Un interprete produce un byte code:</li>
+</ul>
+
+<p><center><img src="imagenes/index-79_1.png"></center></p>
+
+<ul>
+<li>que interpreta una máquina virtual</li>
+</ul>
+</section>
+
+<section>
+<h2>Programas Binarios</h2>
+
+<p>También se pueden hacer ejecutables en windows, embebiendo la maquina virtual
+("frozen binaries")</p>
+
+<br><br>
+
+<p>
+<a href="http://www.py2exe.org/">py2exe</a>
+</p>
+
+</section>
+
+<section>
+<h2>Versiones de python</h2>
+
+<br><br>
+<ul>
+<li><strong>2.7</strong></li>
+
+<p>&nbsp;</p>
+
+<li><strong>3.8</strong></li>
+</ul>
+
+<footer class="der">
+<a href="https://learntocodewith.me/programming/python/python-2-vs-python-3/">Python 2 vs Python 3</a><br />
+</footer>
+
+</section>
+
+
+<section>
+<h2>Ejecutar Python</h2>
+<br>
+
+<p>
+<code>doble click en windows</code>
+
+<br><br>o<br><br>
+
+<code>
+shell> python source.py<br/>
+
+shell> python3 source.py
+</code>
+
+<br>
+
+En Unix o Windows
+</p>
+
+</section>
+
+<section>
+<h2>Ejecutar Python</h2>
+
+<p>
+<strong>En Unix:</strong> poniendo al principio del código:<br><br>
+
+<code>#!/usr/bin/env python3</code>
+<br><br>
+y
+<br><br />
+<code>
+> chmod a+x source.py<br>
+> ./source.py
+</code>
+
+</p>
+</section>
+
+<section>
+<h2>Modulos</h2>
+
+
+Cada arhivo que acaba en la extensión <strong>.py</strong>
+es un <strong>módulo</strong>
+</p>
+
+<br>
+
+<pre class="prettyprints" style="border-style:none;">
+<code class="language-python" data-lang="python"># Ejemplo de codigo pyhton
+import sys
+print(sys.platform)
+</code></pre>
+<br>
+
+Otros archivos pueden usar los contenidos del módulo mediante
+la función <strong>import</strong>
+
+</section>
+
+<section>
+<h2>Espacio de Nombres y Atributos</h2>
+
+Cada módulo define un <strong>Espacio de Nombres</strong>, cada uno
+de los ellos se llama <strong>Atributo</strong>
+<br>
+<p>
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python"># Modulo A.py
+saludo = "Hola mundo"</code>
+</pre>
+<br>
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python"># Modulo B.py
+import A
+print(A.saludo)</code>
+</pre>
+</p>
+</section>
+
+<section>
+<h2>Espacio de Nombres y Atributos</h2>
+<br>
+
+A los contenidos de otros módulos se accede con
+las funciones <br><strong>import</strong> o <strong>from</strong>
+
+<br><br>
+<p>
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python"># Modulo B.py
+from A import saludo
+print(saludo)</code>
+</pre>
+</p>
+
+</section>
+
+<section>
+<h2>Estructura de un programa Python</h2>
+<br>
+<ul>
+<li>Los <b>programas</b> se componen de <b>módulos</b></li>
+
+<li>Los <b>módulos</b> contienen <b>instrucciones</b></li>
+
+<li>Las <b>instrucciones</b> contienen <b>expresiones</b></li>
+
+<li>Las <b>expresiones</b> crean y procesan <b>objetos</b></li>
+</ul>
+</section>
+
+<section>
+<h2>Objetos predefinidos</h2>
+
+<img src="imagenes/biobjects.png" class="cen">
+</section>
+
+<section>
+<h2>Números</h2>
+<img src="imagenes/nu-lit.png" class="cen" style="height: 330px;">
+</section>
+
+<section>
+<h2>Números</h2>
+<br>
+Los objetos <strong>número</strong> se manejan con:
+
+<br><br>
+<ul>
+<li>Operadores como los de C: <b>+</b>, <b>-</b>, <a href="http://docs.python.org/3/tutorial/introduction.html#numbers"><b>...</b></a></li>
+
+<li>Funciones incorporadas: <b>abs</b>, <b>pow</b>, <a href="http://docs.python.org/3/library/functions.html"><b>...</b></a></li>
+
+<li>Modulos: <b>math</b>, <b>random</b>, <a href="http://docs.python.org/3/library/numeric.html"><b>...</b></a></li>
+</ul>
+
+</section>
+
+<section>
+<h2>Cadenas</h2>
+
+Secuencias inmutables de carácteres
+<img src="imagenes/slit.png" class="cen" style="top:220px;height: 330px;">
+
+</section>
+
+<section>
+<h2>Secuencias</h2>
+
+Las cadenas, como otros tipos de objetos, son <i>secuencias ordenadas</i>,
+admiten operaciones como el indexado y el troceado
+<br><br>
+<p>
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">S = 'abcde'
+len(S)       # Tamaño
+S[1]         # b
+S[1:3]       # bcd      Troceado
+S[1:]        # bcde</code>
+</pre>
+</p>
+<footer class="der">
+<a href="http://docs.python.org/3/tutorial/introduction.html#strings" >Strings</a>
+</footer>
+</section>
+
+
+<section>
+<h2>Manejo de cadenas</h2>
+<br><br>
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">S = 'abc' + 'def'                 # Concatenación
+
+S = 'a' * 4                       # Repetición
+
+S = '%s %3.1f' % ('Vers', 2)      # Formato
+
+S = f"Interpola {variables}"      # Interpolación python3</code>
+</pre>
+
+</section>
+
+
+<section>
+<h2>Métodos propios del tipo</h2>
+
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">S = ' Hola mundo '
+
+S.strip()
+
+S.find('a')
+
+S.replace('Hola', 'Adios')
+
+S.lower()
+
+S.isdigit()
+
+S.split()</code>
+</pre>
+
+<footer class="der">
+<a href="http://docs.python.org/3/library/stdtypes.html#string-methods" >String Methods</a>
+</footer>
+</section>
+
+<section>
+<h2>Tipos de cadenas</h2>
+En python3 hay dos tipos de cadenas ligeramente distintos,
+secuencias de <strong>bytes</strong> y secuencias
+de <strong>caracteres</strong>.
+
+<br>
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">
+S = b'balas'    # 5 bytes
+
+S = 'cañón'     # 5 carácteres
+                # pero no 5 bytes
+</code>
+</pre>
+
+Los bytes se usan para audio, imágenes, etc. y los carácteres para texto.
+
+</section>
+
+<section>
+<h2>Asignación dinámica de tipos</h2>
+
+<br>
+Las variables en python no se declaran. <br>
+<br>
+Tienen el tipo de la última asignación que
+se les haga.
+
+<br><br>
+
+<p>
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">S = 'una cadena'
+
+S = 10              # Ahora es un entero</code>
+</pre>
+
+</p>
+</section>
+
+<section>
+<h2>Referencias compartidas</h2>
+
+<img src="imagenes/dt1.png" class="cen" style="top:130px;height:180px;">
+<img src="imagenes/dt2.png" class="cen" style="top:350px;height:180px;">
+</section>
+
+<section>
+<h2>Referencias compartidas</h2>
+<img src="imagenes/dt3.png" class="cen" style="top:200px;height:300px;">
+</section>
+
+<section>
+<h2>Referencia vs copia</h2>
+<br>
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">
+L1 = L2       # Referencia compartida
+
+L2[2] = 0     # También cambia L1
+
+L1 = L2[:]    # Copia, se crea un nuevo objeto
+
+L2[2] = 1     # No cambia L1</code>
+
+</pre>
+
+</section>
+
+<section>
+<h2>Conversión de tipos</h2>
+
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">S = 2
+
+type(S)          # Entero
+
+S = str(S)       # Cadena
+
+S = int(S)       # Entero
+
+S = S + 2.0      # Cambia a
+
+type (S)         # Decimal
+
+help(S)
+dir (S)</code>
+</pre>
+
+</section>
+
+
+
+
+<section>
+<h2>Listas</h2>
+
+Secuencias mutables de objetos
+
+<img src="imagenes/list1.png" class="cen" style="top:200px;height: 360px;">
+
+</section>
+
+<section>
+<h2>Operadores de listas</h2>
+
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">
+L    = [2, 3]         # Asignación
+
+L[1] = 4              # Extracción
+
+L    = L + [4, 5]     # Concatenación
+
+L    = L * 2          # Repetición
+
+3 in L                # Pertenencia
+
+del L[1:3]            # Borrado
+
+a = min(L)</code>
+</pre>
+
+</section>
+
+<section>
+<h2>Métodos para listas</h2>
+<br>
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">L.append(23)
+
+L.extend([12, 18])
+
+L.sort()
+
+L.reverse()
+
+L.remove(23)
+
+L.pop()
+</code>
+</pre>
+<footer class="der">
+<a href="http://docs.python.org/3.8/tutorial/datastructures.html#more-on-lists" >List Methods</a>
+</footer>
+
+</section>
+
+<section>
+<h2>Matrices</h2>
+
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">
+
+M = [[1,2,3],
+     [4,5,6],
+     [7,8,9]
+    ]
+
+M[0][2]          # 3
+
+</code>
+</pre>
+
+</section>
+
+<section>
+<h2>Listas autodefinidas</h2>
+
+<br>
+Son un tipo de expresión de python para generar listas
+
+<br><br>
+
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python"># Segunda columna de la matriz
+L = [col[1] for col in M]</code>
+</pre>
+<br>
+se ejecuta una expresión en cada elemento de una
+secuencia.
+</section>
+
+<section>
+<h2>Diccionarios</h2>
+
+Correspondencias entre nombres y objetos
+
+<img src="imagenes/dict1.png" class="cen" style="top:200px;height:360px;">
+
+</section>
+
+
+<section>
+<h2>Manejando diccionarios</h2>
+
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">D = {'Nombre': 'Pepe',
+     'Apellidos': ['Garcia','Gil'],
+     'DNI': 232323}
+
+print D['Apellidos'][1]    # Gil
+
+for x in D:
+	print(x, ' ',D[x])
+
+</code>
+</pre>
+&nbsp;&nbsp;&nbsp;&nbsp;<strong>tabulador</strong>
+dentro del bucle y <strong>:</strong> al final del for
+</section>
+
+<section>
+	<h2>Operador de extracción</h2>
+	<br>
+	<pre>
+<code class="language-python" data-lang="python">
+D['nombre']            # salta error
+                         (no existe la clave)
+
+
+# Mejor:
+
+D.get('nombre', '')    # ''
+</code>
+	</pre>
+</section>
+
+<section>
+<h2>Iterables</h2>
+
+Los métodos<code> keys(), values(), y items()</code> producen <it>objetos vista</it> que son
+iterables, i.e. van produciendo cada valor en las iteraciones en lugar de devolver toda la lista
+a la vez
+<br><br>
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">
+for x in D.values():
+	print(x)</code>
+</pre>
+
+</section>
+
+<section>
+<h2>sorted</h2>
+<br>
+
+La función <code>sorted</code> admite listas y objetos iterables
+<br><br>
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">
+from operator import itemgetter
+
+Edad = {'Pepe': 33, 'Juan': 44}
+
+print (sorted(Edad, key=itemgetter(1)))
+</code>
+</pre>
+
+<footer class="der">
+<a href="http://wiki.python.org/moin/HowTo/Sorting/" >How to sort</a>
+</footer>
+
+</section>
+
+<section>
+<h2>Tuplas</h2>
+
+Secuencias ordenadas inmutables
+
+<img src="imagenes/tuplas1.png" class="cen" style="top:180px;height: 410px;">
+
+</section>
+
+<section>
+<h2>Conjuntos</h2>
+
+Colecciones inmutables no ordenadas
+<br><br>
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">
+a = {1, 2, 3, 4}
+b = {4, 5, 6, 7}
+
+Union        = a | b
+Interseccion = a & b
+Diferencia   = a - b
+Diferencia_s = a ^ b</code>
+</pre>
+</section>
+
+<section>
+<h2>Booleanos</h2>
+<p>
+<code>True</code> , <code>False</code>
+</p>
+<img src="imagenes/bool1.png" class="cen" style="top:240px;height: 300px; width: 300px">
+</section>
+
+
+<section>
+<h2>Condicional</h2>
+
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">if a > 3:
+	print('a mayor 3')
+
+elif a > 2:
+	print('a mayor 2')
+
+else:
+	print('a menor 2')
+</code>
+</pre>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<strong>tabuladores</strong> y <strong>:</strong> en lugar de bloque
+<footer class="der">
+<a href="http://docs.python.org/3.8/tutorial/controlflow.html#if-statements" >Condicional</a>
+</footer>
+</section>
+
+<section>
+<h2>Archivos</h2>
+<img src="imagenes/file1.png" class="cen" style="top:120px;height: 460px; width: 600px">
+</section>
+
+<section>
+<h2>Archivos: Entrada</h2>
+<br>
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python"># Abrir archivo entrada de texto
+f_texto = open('a.txt', 'rt')
+
+# Leer todo
+contenido = f_texto.read()
+
+# Leer  línea a ĺínea
+for l in open ('a.txt', encoding='utf8')
+	print(l, end='')</code>
+</pre>
+
+</section>
+
+<section>
+<h2>Archivos: Salida</h2>
+<br>
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">
+# Para salida de datos
+f_data  = open ('a.dat', 'wb')
+f_data.write(stream)
+f_data.close()</code>
+</pre>
+
+<footer class="der">
+<a href="http://docs.python.org/3.8/tutorial/inputoutput.html#methods-of-file-objects" >methods for files</a>
+</footer>
+</section>
+
+<section>
+<h2>Persistencia</h2>
+
+<br>
+Con el módulo <strong>pickle</strong>
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">import pickle
+
+D = {'a':1, 'b':2}
+F = open ('d.dat', wb)
+pickle.dump(D,F)
+F.close()</code>
+</pre>
+
+<footer class="der">
+<a href="https://docs.python.org/3.8/library/pickle.html" >Módulo Pickle</a>
+</footer>
+</section>
+
+
+
+<section>
+<h2>Persistencia</h2>
+<br>
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">import pickle
+F = open('d.dat', 'rb')
+D = pickle.load(F)
+
+print (D['a'])</code>
+</pre>
+</section>
+
+
+<section>
+<h2>Funciones</h2>
+
+<img src="imagenes/fun1.png" class="cen" style="top:120px;height:460px; width:600px">
+
+</section>
+
+<section>
+<h2>Funciones</h2>
+
+<strong>def</strong> crea un objeto función y le asigna un nombre
+<br><br>
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">def suma (x, y):
+  """ Esta funcion suma """
+  return x+y
+
+a = suma(1,2)   # 3
+sum = suma
+b = sum(1,2)    # 3</code>
+</pre>
+
+<footer class="der">
+<a href="http://docs.python.org/3.8/tutorial/controlflow.html#defining-functions" >def functions</a>
+</footer>
+</section>
+
+<section>
+<h2>Argumentos por defecto</h2>
+<br>
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">def s (a, b=2, c):
+  return a+b+c
+
+r = s(1, c=3)   #  6</code>
+</pre>
+<br>
+Los argumentos se identifica por la posición o
+asignadoles un valor
+<footer class="der">
+<a href="http://docs.python.org/3.8/tutorial/controlflow.html#more-on-defining-functions" >functions args</a>
+</footer>
+
+</section>
+
+<section>
+<br>
+También se pueden recoger los argumentos de una función
+en una lista o en un diccionario
+
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">#Número indeterminado de argumentos
+def f (*args):
+   for a in arg:
+      print(a)
+
+def g (**arg):
+   for k in arg:
+      print(k, arg[k])
+
+f(1,2,3)
+g(a=1,b=2)</code>
+</pre>
+
+</section>
+
+<section>
+<h2>Alcance de las variables</h2>
+
+Las variables definidas dentro un <b>def</b> son
+<b>locales</b> a esa función
+<br><br>
+
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">
+def f():
+   a = 3
+
+a = 4
+f()
+print(a) # 4</code>
+</pre>
+</section>
+
+<section>
+<h2>Variables globales</h2>
+
+Las variables definidas fuera de todos los <b>def</b> son
+<b>globales</b> en el archivo
+<br><br>
+
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">def suma(b):
+   return a + b
+
+a = 4
+c = suma(2)
+print(c)         # 6</code>
+</pre>
+</section>
+
+<section>
+<h2>Variables Globales</h2>
+
+Para cambiar una variable global dentro
+de una función, tiene que estar declarada
+<b>global</b>
+<br>
+
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">
+  def suma(b):
+    global a
+    a = 4
+    return a + b
+
+a = 3
+c = suma(3)
+print(c, a)         # 7, 4</code>
+</pre>
+</section>
+
+<section>
+<h2>Argumentos</h2>
+
+Los argumentos se <b>asignan</b> a variables locales,
+por tanto:
+<br><br>
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">def f(a):
+  a = 99
+
+b = 88
+f(b)
+print(b)             # 88</code>
+</pre>
+</section>
+
+<section>
+<h2>Argumentos</h2>
+
+
+<br><br>
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">def f(L): # L es una referencia
+   L[1] = 99
+
+M = [1,2,3]
+f(M)
+print (M[1])          # 99</code>
+</pre>
+</section>
+
+<section>
+<h2>Funciones anónimas</h2>
+
+Además de <b>def</b> se pueden crear
+funciones con expresiones <b>lamda</b>
+para funciones in-line
+<br><br>
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">L = [lambda x: x**2,
+     lambda x: x**3]
+
+for f in L:
+   print (f(2))  # 4, 8</code>
+</pre>
+<footer class="der">
+<a href="http://docs.python.org/3.8/tutorial/controlflow.html#lambda-forms" >lambda functions</a>
+</footer>
+</section>
+
+
+
+<section>
+<h2>Clases</h2>
+
+<strong>class</strong> sirve para definir clases (nuevos tipos de objetos)
+<br>
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">class mi_clase:
+   """ Documentacion para la clase"""
+   c = ''                # Atributo
+
+   # Inicializacion
+   def __init__(self, a):
+      self.c = a
+
+   def getc(self):        # Metodo
+      return self.c</code>
+</pre>
+<footer class="der">
+<a href="http://docs.python.org/3.8/tutorial/classes.html#a-first-look-at-classes" >Classes</a>
+</footer>
+</section>
+
+<section>
+<h2>Clases</h2>
+
+Los atributos y métodos son publicos por defecto
+<br>
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">a = mi_clase(2)
+print(a.c)        # 2
+print(a.getc())   # 2
+
+# Atributo aniadido fuera de la clase
+a.b = 3
+print (a.b)        # 3</code>
+</pre>
+<br>
+
+Las variables privadas empiezan por <strong>_</strong>
+</section>
+
+<section>
+<h2>Herencia</h2>
+
+Las clases pueden heredar atributos o métodos de otras
+clases
+
+<br><br>
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">class mi_clase_2 (mi_clase):
+   def getc (self):
+      return self.c * 2
+
+a = mi_clase_2(4)
+print (a.getc())   # 8</code>
+</pre>
+
+<footer class="der">
+<a href="http://docs.python.org/3.8/tutorial/classes.html#inheritance" >Inheritance</a>
+</footer>
+
+</section>
+
+<section>
+<h2>Excepciones</h2>
+
+Sirven para tratar los errores en tiempo
+de ejecución
+
+<br><br>
+Se utilizan las instruciones:
+<p>
+<ul>
+<li><code><b>try:</b></code></li>
+
+<br />
+
+<li><code><b>except:</b></code></li>
+</ul>
+</p>
+
+
+<footer class="der">
+<a href="https://docs.python.org/3.8/tutorial/errors.html#exceptions" >Exceptions</a>
+</footer>
+
+</section>
+
+<section>
+<h2>Excepciones</h2>
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">try:
+	f = open ('lalala.txt', 'r')
+	i = int(f.readline())
+
+except IOError as err:
+	print ("I/O Error : %s" % err)
+
+except ValueError:
+	print ("Error de conversion")
+
+except:
+	print ("Error inesperado")
+	raise</code>
+</pre>
+</section>
+
+<section>
+<h2>Excepciones</h2>
+<br><br>
+
+<strong>except err</strong> captura el evento <code>err</code> que se produzca
+dentro del bloque <strong>try</strong>
+
+<br><br>
+
+Sin <code>err</code> captura cualquier error
+
+<br><br>
+
+<strong>raise</strong> vuelve a activar el error para que
+pase al nivel superior
+
+
+<footer class="der">
+<a href="http://docs.python.org/3.8/library/exceptions.html#bltin-exceptions" >Built-in Exceptions</a>
+</footer>
+
+</section>
+
+
+<section>
+<h2>Más sobre módulos</h2>
+Son archivos que agrupan código para reusarlo, se
+usan con <strong>import</strong> y <strong>from</strong>
+
+<img src="imagenes/mod1.png" class="cen" style="top:220px;height:360px;">
+
+<footer class="der">
+<a href="http://docs.python.org/3.8/tutorial/modules.html" >Modules</a>
+</footer>
+</section>
+
+<section>
+<h2>Módulos como programas</h2>
+Los módulos pueden funcionar como
+programas independientes sin incluyen al final:
+<br><br>
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">if __name__ == '__main__':
+
+   # Código para cuando se
+   # ejecute el archivo
+   # como script</code>
+</pre>
+
+<footer class="der">
+<a href="http://docs.python.org/3.8/tutorial/modules.html#executing-modules-as-scripts" >Modules</a>
+</footer>
+</section>
+
+<section>
+<h2>Módulos estándar</h2>
+<br><br>
+<p>
+Python incluye una collección de sobre 200
+módulos, la <strong>librería standard</strong>, para hacer todo tipo de tareas
+</p>
+<br><br>
+
+<footer>
+<a href = "http://docs.python.org/3.8/library/index.html">The Python Standard Library</a>
+</footer>
+
+</section>
+
+
+<section>
+<h2>Paquetes de módulos</h2>
+<br><br>
+Los módulos se pueden agrupar en <b>paquetes</b>,
+poniendo los archivos en un mismo directorio
+<br><br>
+Cada directorio conteniendo paquetes debe incluir
+un archivo llamado <strong>__init__.py</strong>
+<footer class="der">
+<a href="http://docs.python.org/3.8/tutorial/modules.html#packages" >Packages</a>
+</footer>
+</section>
+
+<section>
+<h2>Repositorio de python</h2>
+<br>
+<p>
+Se pueden bajar paquetes del repositorio
+<a href="https://pypi.python.org/pypi">PyPI</a>
+<br><br>
+<p>
+Se instalan con el programa: <br><br><b><code>pip</code></b>
+&nbsp;&nbsp;<code>install</code>&nbsp;<code>paquete</code>
+<br>
+o con <code>apt-get</code> y similares
+</p>
+
+</p>
+
+</section>
+
+<section>
+<h2>Resumen de la sintaxis</h2>
+
+<img src="imagenes/sin1.png" class="cen" style="top:100px;height:490px;">
+
+</section>
+
+<section>
+<h2>Resumen de la sintaxis</h2>
+
+<br>
+A diferencia de otros lenguajes:
+
+<ul style="color:blue;">
+<li>No hay punto y coma final</li>
+<li>Al principio del bloque se pone <b>:</b></li>
+<li>El bloque se indica con tabuladores</li>
+<li>No hace falta poner paréntesis en los <b>if</b></li>
+</ul>
+</section>
+
+<section>
+	<br>
+	<p>
+También se admite:
+</p>
+<br>
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">a = 2; c = 1
+
+# Una sola línea
+if x > y: print(x)
+
+# Varias líneas con paréntesis
+X = (A + B +
+        C + D)</code>
+</pre>
+</section>
+
+<section>
+<h2>Documentación</h2>
+<br>
+Con <code>help:</code>
+<br><br>
+<pre class="prettyprint" style="border-style:none;">
+<code class="language-python" data-lang="python">a = 'hola'
+help(a)
+help(a.find)
+
+import string
+help(string)</code>
+</pre>
+<footer class="der">
+<a href="http://docs.python.org/3/index.html" >Phyton Doc</a>
+</footer>
+</section>
+
+<section>
+	<h2>Ambientes virtuales con python</h2>
+	<br />
+	Para aislar la instalación de python usada en el proyecto de la de nuestro ordenador
+	<br>
+	<br>
+	<a href="https://docs.python.org/3/library/venv.html">
+		Creating virtual environments</a>
+   <br /><br />
+	<a href="https://docs.python-guide.org/dev/virtualenvs/">
+		Pipenv & Virtual Environments</a>
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- Style -->
+
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'>
+<style>
+  html { background-color: aliceblue; }
+  a { color: blue4; font-size:80%; text-decoration:none;} a:hover {text-decoration: underline;}
+  footer { position: absolute; bottom: 10px; right: 50px; }
+  strong {color: #FF0066}
+  body {
+      font-family: 'Oswald', arial, serif;
+      background-color: aliceblue;
+      color: black;
+      font-size: 2em;
+      background: aliceblue;
+  }
+
+  table {
+	  margin: auto 20px auto auto;
+  }
+
+  td {
+	  padding:5px 10px 5px 10px;
+  }
+
+  th {
+	background:rgb(248,231,248);
+  }
+
+
+  pre {font-size:80%;
+       width: 630px;
+       line-height:1.6em;
+       margin: auto auto auto 100px;
+	  }
+
+/*   code {
+    background-color: aliceblue !important;
+  }
+ */
+  /* Transition effect */
+  section {
+      -moz-transition: left 400ms linear 0s;
+      -webkit-transition: left 400ms linear 0s;
+      -ms-transition: left 400ms linear 0s;
+      transition: left 400ms linear 0s;
+      background: aliceblue;
+  }
+  section { left: -150%; }
+  section[aria-selected] { left: 0; }
+  section[aria-selected] ~ section { left: +150% }
+
+  .chapter { background-color: paleturquoise;}
+  .chapter h1 {line-height: 600px; vertical-align: middle; margin: 0; text-align: center; display: block}
+
+  h1 {
+      margin: 50px 100px 0 100px;
+      font-size: 60px;
+      text-shadow: 0px -1px 0px #000;
+      text-align: left;
+  }
+  h2 {
+      color: rgb(96,0,0);
+      margin: 30px 0 20px 0;
+      font-size: 40px;
+      text-align: center;
+  }
+  ul {
+      margin-top: 20px;
+      font-size: 35px;
+      text-align: left;
+      //border-left: 4px solid white;
+      padding-right: 40px;
+      min-width: 310px;
+      margin-left: 50px;
+      display: inline-block;
+      font-size: 95%;
+  }
+  q, p {
+      margin: 30px auto 0 auto;
+      width: 95%;//630px;
+  }
+  q:after {content: ""}
+  q:before {content: ""}
+  q {
+      display: block;
+      margin-top: 140px;
+  }
+  video {
+      position: absolute;
+      top: 210px;
+      width: 260px;
+      left: 445px;
+      box-shadow: 0 0 10px black;
+  }
+
+  .cen {
+      position: absolute;
+      top: 120px;
+      width: 620px;
+      height: 440px;
+      left: 130px;
+      box-shadow: 0 0 4px black;
+  }
+
+  li {
+    //list-style-type: none;
+    padding: 9px;
+  }
+
+</style>
+
+<!-- {{{{ *****************  DZSlides CORE 2.0b1 *************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+<!-- This block of code is not supposed to be edited, but if you want to change the behavior of the slides, feel free to hack it ;) -->
+
+<!-- Default Style -->
+
+<style>
+  * { margin: 0; padding: 0; }
+  details {display: none;}
+  body {
+    width: 900px; height: 600px;
+    margin-left: -400px; margin-top: -300px;
+    position: absolute; top: 50%; left: 50%;
+    overflow: hidden;
+  }
+  html {
+    overflow: hidden;
+  }
+  section {
+    position: absolute;
+    pointer-events: none;
+    width: 100%; height: 100%;
+  }
+  pre {
+    font-size:70% !important; 
+  }
+  section[aria-selected] { pointer-events: auto;}
+  body {display: none}
+  body.loaded {display: block}
+</style>
+
+<script>
+  var friendWindows = [];
+  var idx = 1;
+  var slides;
+
+  /* main() */
+
+  window.onload = function() {
+    slides = document.querySelectorAll("body > section");
+    onhashchange();
+    setSlide()
+    document.body.className = "loaded";
+    setupTouchEvents();
+    onresize();
+  }
+
+  /* Handle keys */
+
+  window.onkeydown = function(e) {
+    // Don't intercept keyboard shortcuts
+    if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) {
+      return;
+    }
+    if ( e.keyCode == 37 // left arrow
+      || e.keyCode == 38 // up arrow
+      || e.keyCode == 33 // page up
+    ) {
+      e.preventDefault();
+      back();
+    }
+    if ( e.keyCode == 39 // right arrow
+      || e.keyCode == 40 // down arrow
+      || e.keyCode == 34 // page down
+    ) {
+      e.preventDefault();
+      forward();
+    }
+
+    if ( e.keyCode == 32) { // space
+        e.preventDefault();
+        toggleContent();
+    }
+  }
+
+  /* Touch Events */
+
+  function setupTouchEvents() {
+    var orgX, newX;
+    var tracking = false;
+
+    var body = document.body;
+    body.addEventListener("touchstart", start, false);
+    body.addEventListener("touchmove", move, false);
+
+    function start(e) {
+      e.preventDefault();
+      tracking = true;
+      orgX = e.changedTouches[0].pageX;
+    }
+
+    function move(e) {
+      if (!tracking) return;
+      newX = e.changedTouches[0].pageX;
+      if (orgX - newX > 100) {
+        tracking = false;
+        forward();
+      } else {
+        if (orgX - newX < -100) {
+          tracking = false;
+          back();
+        }
+      }
+    }
+  }
+
+  /* Adapt the size of the slides to the window */
+
+  window.onresize = function() {
+    var sx = document.body.clientWidth / window.innerWidth;
+    var sy = document.body.clientHeight / window.innerHeight;
+    var transform = "scale(" + (1/Math.max(sx, sy)) + ")";
+    document.body.style.MozTransform = transform;
+    document.body.style.WebkitTransform = transform;
+    document.body.style.OTransform = transform;
+    document.body.style.msTransform = transform;
+    document.body.style.transform = transform;
+  }
+  function getDetails(idx) {
+    var s = document.querySelector("section:nth-of-type("+ idx +")");
+    var d = s.querySelector("details");
+    return d?d.innerHTML:"";
+  }
+  window.onmessage = function(e) {
+    msg = e.data;
+    win = e.source;
+    if (msg === "register") {
+      friendWindows.push(win);
+      win.postMessage(JSON.stringify({method: "registered", title: document.title, count: slides.length}), "*");
+      win.postMessage(JSON.stringify({method: "newslide", details: getDetails(idx), idx: idx}), "*");
+      return;
+    }
+    if (msg === "back") back();
+    if (msg === "forward") forward();
+    if (msg === "toggleContent") toggleContent();
+    // setSlide(42)
+    var r = /setSlide\((\d+)\)/.exec(msg);
+    if (r) {
+        idx = r[1];
+        setSlide();
+    }
+  }
+
+  /* If a Video is present in this new slide, play it.
+     If a Video is present in the previous slide, stop it. */
+
+  function toggleContent() {
+    var s = document.querySelector("section[aria-selected]");
+    if (s) {
+        var video = s.querySelector("video");
+        if (video) {
+            if (video.ended || video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+    }
+  }
+
+  /* If the user change the slide number in the URL bar, jump
+     to this slide. */
+
+  window.onhashchange = function(e) {
+    var newidx = ~~window.location.hash.split("#")[1];
+    if (!newidx) newidx = 1;
+    if (newidx == idx) return;
+    idx = newidx;
+    setSlide();
+  }
+
+  /* Slide controls */
+
+  function back() {
+    if (idx == 1) return;
+    idx--;
+    setSlide();
+  }
+  function forward() {
+    if (idx >= slides.length) return;
+    idx++;
+    setSlide();
+  }
+  function setSlide() {
+    var old = document.querySelector("section[aria-selected]");
+    var next = document.querySelector("section:nth-of-type("+ idx +")");
+    if (old) {
+      old.removeAttribute("aria-selected");
+      var video = old.querySelector("video");
+      if (video) { video.pause(); }
+    }
+    if (next) {
+      next.setAttribute("aria-selected", "true");
+      var video = next.querySelector("video");
+      if (video) { video.play(); }
+    } else {
+      console.warn("No such slide: " + idx);
+      idx = 0;
+      for (var i = 0; i < slides.length; i++) {
+          if (slides[i].hasAttribute("aria-selected")) {
+              idx = i + 1;
+          }
+      }
+    }
+    window.location.hash = idx;
+    for (var i = 0; i < friendWindows.length; i++) {
+        friendWindows[i].postMessage(JSON.stringify({method: "newslide", details: getDetails(idx), idx: idx}), "*");
+    }
+  }
+</script>
+<!-- vim: set fdm=marker: }}} -->

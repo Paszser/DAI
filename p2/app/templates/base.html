@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="es">
+<link rel="stylesheet" href="../static/style.css" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Daniel Ballesteros Fernandes">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Práctica 2</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="row">
+        <div class="col-1">
+          <a class="hreflogo" href="{{ url_for("home") }}">
+            <img src="../static/images/logo.png" id="icon" alt="Logo Icon" />
+          </a>
+        </div>
+        <div class="col-11">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Ejercicios
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="{{ url_for("ejercicio1") }}">Ejercicio 1</a></li>
+                  <li><a class="dropdown-item" href="{{ url_for("ejercicio2") }}">Ejercicio 2</a></li>
+                  <li><a class="dropdown-item" href="{{ url_for("ejercicio3") }}">Ejercicio 3</a></li>
+                  <li><a class="dropdown-item" href="{{ url_for("ejercicio4") }}">Ejercicio 4</a></li>
+                  <li><a class="dropdown-item" href="{{ url_for("ejercicio5") }}">Ejercicio 5</a></li>
+                  <li><a class="dropdown-item" href="{{ url_for("ejercicio6") }}">Ejercicio 6</a></li>
+                </ul>
+              </li>
+            </ul>
+            {% if('email' in session) %}
+            <p style="margin-right: 5%; color: green;">Se ha registrado como {{emailLog}}</p>
+            <a href="{{ url_for("logout") }}">
+              <button class="btn btn-outline-success" type="submit">
+                LogOut
+              </button>
+            </a>
+            {% else %}
+              <div class="row">
+                <div class="col-sm">
+                  <a href="{{ url_for("login") }}">
+                    <button class="btn btn-outline-success" type="submit">
+                      LogIn
+                    </button>
+                  </a>
+                </div>
+                <div class="col-sm">
+                  <a href="{{ url_for("register") }}">
+                    <button class="btn btn-outline-success" type="submit">
+                      Register
+                    </button>
+                  </a>
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+        <div class="area"></div><nav class="main-menu">
+          <ul>
+              <li class="has-subnav">
+                  <a href="#">
+                    <i class="fa fa-list fa-2x"></i>
+                      <span class="nav-text">
+                          Menú Aside
+                      </span>
+                  </a> 
+              </li>
+            </ul>
+          <ul class="logout">
+              <li>
+                <a href="{{ url_for("home") }}">
+                      <i class="fa fa-power-off fa-2x"></i>
+                      <span class="nav-text">
+                          Logout
+                      </span>
+                  </a>
+              </li>  
+          </ul>
+      </nav>
+
+        <div class="container mt-5">
+
+          {% block msg %}
+          
+          {% endblock %}
+          {% block contenido %}
+          
+          {% endblock %}
+          <!-- <h1>Estás en la {{ v1 }}</h1> -->
+        </div>
+        <div class="container mt-3">
+          <h2> Últimas Páginas Visitadas </h2>
+          <div>
+              <a>Registro de las últimas 3 páginas visitadas por el usuario.</a>
+          </div>
+
+          <div class="mt-2">
+              {% for enlace in enlaces %}
+                  <li><a href="{{ enlace['enlace'] }}" class="link-primary">{{ enlace['nom_pagina'] }}</a></li>
+              {% endfor %}
+          </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+  </body>
+
+  <footer class="bg-light text-center text-white fixed-bottom">  
+    <!-- Copyright -->
+    <div class="text-center p-3, footerPag" style="background-color: rgba(0, 0, 0, 0.2);">
+      ©Daniel Ballesteros Fernandes - UGR - 2021/2022
+    </div>
+    <!-- Copyright -->
+  </footer>
+</html>

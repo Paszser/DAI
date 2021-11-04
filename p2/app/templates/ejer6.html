@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block msg %}
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+        <li class="{{ Alert }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+
+{% endblock %}
+
+{% block contenido %}
+
+<h1> Ejercicio 6</h1>
+<h2> Reconocimiento de cadenas </h2>
+<div>
+    <a>Inserte una cadena para reconocer entre las opciones.</a>
+    <ul>
+        <li>Palabra seguida de un espacio y una letra mayúscula</li>
+        <li>Dirección de email</li>
+        <li>Número de tarjeta de crédito separado por espacios o guiones</li>
+    </ul>
+</div>
+<div>
+    <form class="form-horizontal" action="{{ url_for("ejercicio6") }}"" method="post">
+        <div class="form-group mt-2">
+        <label class="control-label col-sm-2" for="email">Frase:</label>
+            <div class="col-sm-10">
+                <input name="text" type="text" class="form-control" id="InputNumber" placeholder="Inserte una frase...">
+            </div>
+        </div>
+        <div class="form-group mt-3">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-outline-success">Prueba</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    var input = document.getElementById('InputNumber');
+    input.focus();
+    input.select();
+</script>
+{% endblock %}

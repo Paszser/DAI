@@ -1,0 +1,17 @@
+version: "3"
+services:
+    web:
+        build: .
+    redis:
+        image: redis
+        volumes:
+            - "./data:/data"
+        command: redis-server --appendonly yes
+    lb:
+        image: dockercloud/haproxy
+        ports:
+            - 4000:80
+        links:
+            - web
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
