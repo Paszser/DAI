@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block msg %}
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+        <li class="{{ Alert }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+
+{% endblock %}
+
+{% block contenido %}
+
+<h1> Búsqueda</h1>
+<h2> Pokémon </h2>
+<div class="mt-2">
+    <p>Lista de pokémon:</p>
+    <div class="mt-2">
+        
+            <form class="form-horizontal" action="{{ url_for("busqueda", pag=pag) }}"" method="post">
+                <div class="row">
+                    <div class="col-2">
+                        <input type="search" name="pokemon" class="form-control rounded" id="pokemon" placeholder="Inserte nombre de Pokémon..." aria-label="Search"
+                        aria-describedby="search-addon" style="width: 150%"/>
+                    </div>
+                    <div class="col-1"></div>
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-outline-primary">Search</button>
+                    </div>
+                    <div class="col-7"></div>
+                </div>
+            </form>
+        <div class="mt-2">
+            {% for pokemon in pokemons %} 
+                <div class="row"> 
+                    <div class="col-5"></div>
+                    <div class="card, col-4" style="width: 18rem; border-style: solid; border-radius: 5%; border-color:lightgrey;">
+                        <img class="card-img-top" src='{{ pokemon['img'] }}' alt="Card image cap">
+                        <div class="card-body">
+                        <h5 class="card-title">{{ pokemon['id'] }} {{ pokemon['name'] }}</h5>
+                        <ul>
+                            <li> Peso: {{ pokemon['weight'] }}</li>
+                            <li>  Altura: {{ pokemon['height'] }}</li>
+                            <li> Tipos: <br> {% for tipos in pokemon['type'] %} {{ tipos }} </li> {% endfor %}
+                            <li> Debilidades: <br> {% for debilidades in pokemon['weaknesses'] %} {{ debilidades }} <br> </li> {% endfor %}
+                        </ul>
+                        </div>
+                    </div>
+                    <div class="col-3"></div>
+                </div>   
+            {% endfor %}
+        </div>
+        <div class="mt-5">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for pokemon in lista_completa %}
+                    <tr>
+                        <th scope="row">{{ pokemon['id'] }}</th>
+                        <td>{{ pokemon['name'] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+        </div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+              <li class="page-item"><a class="page-link" href="/pokemon/1">1</a></li>
+              <li class="page-item"><a class="page-link" href="/pokemon/2">2</a></li>
+              <li class="page-item"><a class="page-link" href="/pokemon/3">3</a></li>
+              <li class="page-item"><a class="page-link" href="/pokemon/4">4</a></li>
+              <li class="page-item"><a class="page-link" href="/pokemon/5">5</a></li>
+              <li class="page-item"><a class="page-link" href="/pokemon/6">6</a></li>
+              <li class="page-item"><a class="page-link" href="/pokemon/7">7</a></li>
+              <li class="page-item"><a class="page-link" href="/pokemon/8">8</a></li>
+              <li class="page-item"><a class="page-link" href="/pokemon/9">9</a></li>
+              <li class="page-item"><a class="page-link" href="/pokemon/10">10</a></li>
+              <li class="page-item"><a class="page-link" href="/pokemon/11">11</a></li>
+              <li class="page-item"><a class="page-link" href="/pokemon/12">12</a></li>
+              <li class="page-item"><a class="page-link" href="/pokemon/13">13</a></li>
+              <li class="page-item"><a class="page-link" href="/pokemon/14">14</a></li>
+              <li class="page-item"><a class="page-link" href="/pokemon/15">15</a></li>
+            </ul>
+          </nav>
+    </div>
+</div>
+
+<script>
+    var input = document.getElementById('nombrePokemon');
+    input.focus();
+    input.select();
+</script>
+
+{% endblock %}

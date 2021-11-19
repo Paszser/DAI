@@ -1,0 +1,26 @@
+# docker-compose.yml
+version: '3.7'
+services: 
+  app: 
+    build: .
+    depends_on:
+      - mongo
+    ports: 
+      - 5000:5000
+    volumes: 
+      - ./app:/app
+
+  mongo: 
+    image: mongo:latest
+    ports: 
+      - 27017:27017
+    volumes: 
+      - ./dump:/dump
+      - ./datos_db:/data/db 
+    
+  mongo-express: 
+    image: mongo-express
+    depends_on: 
+      - mongo
+    ports: 
+      - 8081:8081
