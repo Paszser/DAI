@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+<h1> Cuadros</h1>
+<div class="mt-2">
+    <p>Lista de Cuadros:</p>
+
+    {% if mensaje %}
+        <div class="alert alert-success" role="alert">
+            ¡Cuadro eliminado satisfactoriamente!
+        </div>
+    {% endif %}
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Galería</th>
+            <th scope="col">Autor</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for cuadro in cuadros %}     
+          <tr>
+            <td>{{ cuadro.pk }}</td>
+            <td>{{ cuadro.nombre }}</td>
+            <td>{{ cuadro.galeria }}</td>
+            <td>{{ cuadro.autor }}</td>
+            <td>{{ cuadro.fecha_creación }}</td>
+            <td><a class="btn btn-warning" href="{% url 'cuadroEdit' cuadro.pk %}">Editar</a></td>
+            <td><a class="btn btn-danger" href="{% url 'eliminarCuadro' cuadro.pk %}">Eliminar</a></td>
+          </tr>
+        {% endfor %} 
+        </tbody>
+      </table>
+</div>
+
+{% endblock %}

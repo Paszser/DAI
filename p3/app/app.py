@@ -1,14 +1,13 @@
 #Pruebas realizadas con httpie
-#http -v http://0.0.0.0:5000/api/friends    GET, muestra todos los pokémon
-#http -f POST http://0.0.0.0:5000/api/friends name=prueba season=2021.0 number=2021.0 airdate=2021/11/10 airtime=10:00 summary="RESUMEN"       POST, añade un Pokémon
-#http -v http://0.0.0.0:5000/api/friends/618012220814c9b1b4f5d582   En el caso de añadir otro capitulo copiar el id que se genera cuando se hace POST      GET con id
-#http -f PUT http://0.0.0.0:5000/api/friends/618012220814c9b1b4f5d582 name=prueba_editado season=2021.1 number=2021.1 airdate=2021/11/11 airtime=11:00 summary="RESUMEN EDITADO"
-#http DELETE http://0.0.0.0:5000/api/friends/618012220814c9b1b4f5d582
+#http -v http://localhost:5000/api/pokemon    GET, muestra todos los pokémon
+#http -f POST http://localhost:5000/api/pokemon name=Rayquaza type=Dragon height=200.0 weight=100.0 img=https://www.serebii.net/pokemongo/pokemon/384.png weaknesses=Ice       POST, añade un Pokémon
+#http -v http://localhost:5000/api/pokemon/61967b450fabf192ae29d921   En el caso de añadir otro capitulo copiar el id que se genera cuando se hace POST      GET con id
+#http -f PUT http://localhost:5000/api/pokemon/61967b450fabf192ae29d921 name=Rayquazinha type=Fly height=201.0 weight=101.0 img=https://www.serebii.net/pokemongo/pokemon/385.png weaknesses=Dragon
+#http DELETE http://localhost:5000/api/pokemon/61967b450fabf192ae29d921
 
 from flask import Flask, url_for, render_template, session, flash, request, jsonify
 from pymongo import MongoClient
 from bson import ObjectId
-#from flask_restful import Resource, Api, reqparse
 import codecs, model, re, random, itertools
 
 app = Flask(__name__, static_url_path='/static')

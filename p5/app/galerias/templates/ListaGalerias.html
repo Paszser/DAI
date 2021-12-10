@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+<h1> Galerías</h1>
+<div class="mt-2">
+    <p>Lista de Galerías:</p>
+
+    {% if mensaje %}
+        <div class="alert alert-success" role="alert">
+            ¡Galería eliminada satisfactoriamente!
+        </div>
+    {% endif %}
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for galeria in galerias %}     
+          <tr>
+            <td>{{ galeria.pk }}</td>
+            <td>{{ galeria.nombre }}</td>
+            <td>{{ galeria.dirección }}</td>
+            <td><a class="btn btn-warning" href="{% url 'galeriaEdit' galeria.pk %}">Editar</a></td>
+            <td><a class="btn btn-danger" href="{% url 'eliminarGaleria' galeria.pk %}">Eliminar</a></td>
+          </tr>
+        {% endfor %} 
+        </tbody>
+      </table>
+</div>
+
+{% endblock %}

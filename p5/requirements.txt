@@ -1,0 +1,4 @@
+# requirements.txt
+Django==3.2
+django-crispy-forms==1.10.0
+
